@@ -1,0 +1,1 @@
+create table flights.flight (FLIGHT_ID int, FLIGHT_NAME varchar(100), FLIGHT_TIME varchar(100),  FLIGHT_FARE varchar(100), FLIGHT_STOPS int );

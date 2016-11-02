@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.vc.common.Flight" table="flight" catalog="flights">
+        <id name="flightId" type="java.lang.Integer">
+            <column name="FLIGHT_ID" />
+     		<generator class="increment"></generator>  
+        </id>
+        <property name="name" type="string">
+            <column name="FLIGHT_NAME" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="time" type="string">
+            <column name="FLIGHT_TIME" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="fare" type="double">
+            <column name="FLIGHT_FARE" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="stops" type="int">
+            <column name="FLIGHT_STOPS" length="20" not-null="true" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>

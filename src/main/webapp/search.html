@@ -1,0 +1,69 @@
+ <!DOCTYPE html>
+<html>
+<head> 
+   <meta charset="UTF-8">
+  <title>Flight Search</title>
+   
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  
+  <script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope, $http) { 
+	$scope.result = "";
+	$scope.mySubmit = function() { 
+	  console.log($scope.from);
+	  var req = {
+		 method: 'GET', 
+		 url: 'http://localhost:8080/flights/rest/flight/search/get/'+$scope.from +'/'+$scope.to 
+		};
+	  
+	  $http(req)
+	  .then(function (response) { 
+			$scope.result = response.data;
+	  });
+	}
+	
+});
+</script>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="myCtrl">
+ <p>Name: <input type="text" ng-model="from"/> <br> </p>
+ <p>Password: <input type="text" ng-model="to"/> <br> </p>
+  <button ng-click="mySubmit()">SUBMIT</button>
+
+<div >
+<h1>List Of Available Flights</h1>
+<div>
+  <table border=1>
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Travel</th>
+       <th>Name Of The Flight</th>
+        <th>Time</th>
+        <th>Fare</th>
+		<th>No.Of Stops</th>
+     </tr>
+    </thead>
+    <tbody>
+	
+      <tr  ng-repeat="availability in result.flights">
+        <td><input type="checkbox" /></td>
+        <td>{{result.from}}</td>
+        <td>{{availability.name}}</td>
+        <td>{{availability.time}}</td>
+        <td>{{availability.fare}}</td>
+		<td>{{availability.stops}}</td>
+		
+		</tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+ 
+</body>
+</html>
